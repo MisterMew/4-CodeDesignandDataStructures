@@ -9,9 +9,15 @@ private:
 	TreeNode* mRight_ptr = nullptr;
 	int mNodeData;
 
-	  /// Functions
+
 public:
+	TreeNode();
+
+	 /// Functions
     /* Declare class functions */
+	TreeNode(int value);
+	~TreeNode();
+
 	void DrawNode(int posX, int posY, bool isSelected);
 
 	/* Declare and Define class functions */

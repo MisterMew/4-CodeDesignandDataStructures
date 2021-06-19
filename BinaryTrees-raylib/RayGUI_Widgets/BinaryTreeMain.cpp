@@ -2,7 +2,19 @@
 #include "TreeNodeCore.h"
 #include "raylib.h"
 
+BinaryTree::BinaryTree() {
+	mRoot_ptr = nullptr;
+}
+
+BinaryTree::~BinaryTree() {
+	while (mRoot_ptr) {
+		DeleteNode(mRoot_ptr->NodeData());
+	}
+}
+
+
 void BinaryTree::InsertNode(int newData) {
+	TreeNode* newNode = new TreeNode();
 }
 
 void BinaryTree::DeleteNode(int nodeToDelete) {}
@@ -39,6 +51,7 @@ void BinaryTree::DrawRoot(TreeNode* selectedNode) {
 
 /* Draw the binary trees nodes */
 void BinaryTree::DrawTree(TreeNode* currentNode, int posX, int posY, int horizontalSpacing, TreeNode* selectedNode) {
+	if (mRoot_ptr == nullptr) { return; }
 	horizontalSpacing /= 2;
 
 	if (currentNode) {

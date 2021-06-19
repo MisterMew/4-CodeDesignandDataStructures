@@ -28,8 +28,8 @@ void DrawOptions() {
 	}
 
 	if (GuiButton(Rectangle{ 5, 50, 125, 30 }, GuiIconText(RICON_OK_TICK, "INSERT NODE"))) {
-		//binaryTree.InsertNode(valueBoxValue);
-		//selectedNode = binaryTree.SearchFor(valueBoxValue);
+		binaryTree.InsertNode(valueBoxValue);
+		selectedNode = binaryTree.SearchFor(valueBoxValue);
 	}
 	if (GuiButton(Rectangle{ 5, 85, 125, 30 }, GuiIconText(RICON_CROSS, "DELETE NODE"))) {}
 

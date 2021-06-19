@@ -14,6 +14,9 @@ private:
 	bool FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& ppOutParent);
 
 public:
+	BinaryTree();
+	~BinaryTree();
+
 	void InsertNode(int newData);
 	void DeleteNode(int nodeToDelete);
 	TreeNode* SearchFor(int nodeToFind);

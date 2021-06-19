@@ -1,6 +1,12 @@
 #include "TreeNodeCore.h"
 #include "raylib.h"
 
+TreeNode::TreeNode(int value) : mNodeData(value), mLeft_ptr(nullptr), mRight_ptr(nullptr) {}
+
+TreeNode::~TreeNode() {}
+
+ /// DRAW NODE
+/* Draws the nodes */
 void TreeNode::DrawNode(int posX, int posY, bool isSelected = false) {
 	static char buffer[10];
 	sprintf(buffer, "%d", mNodeData);
