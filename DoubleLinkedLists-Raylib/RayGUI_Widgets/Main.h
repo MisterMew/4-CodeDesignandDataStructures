@@ -21,7 +21,6 @@ DLL::LinkedList dll;
 /// VARIABLES
 int selectionIndex = 0;
 
-
 /// FUNCTION DECLARATIONS
 void Init();
 void DrawOptions();
