@@ -12,7 +12,7 @@ void Init() {
 	SetExitKey(0);
 }
 
-/// DRAW OPTIONS
+ /// DRAW OPTIONS
 /* Draw the menu options to interact with the DLL */
 void DrawOptions() {
 	//Menu Options

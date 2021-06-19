@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Fiels">
+      <UniqueIdentifier>{028c93f9-8540-4beb-aa42-f696fd3dfd9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{67cb4b53-2900-42dd-8119-4b4ccb9d2ea6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTreeMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeNodeMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main.h">
+      <Filter>Header Fiels</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTreeCore.h">
+      <Filter>Header Fiels</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNodeCore.h">
+      <Filter>Header Fiels</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
