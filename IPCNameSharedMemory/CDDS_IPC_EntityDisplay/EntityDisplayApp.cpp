@@ -10,20 +10,21 @@ bool EntityDisplayApp::Startup() {
 
 	fileHandle = OpenFileMapping(FILE_MAP_ALL_ACCESS, FALSE, L"SharedMemory");
 
-	int* entCount = (int*)MapViewOfFile(fileHandle, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(int));
+	int* entityCount = (int*)MapViewOfFile(fileHandle, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(int));
 
-	int entCountForReal = *entCount;
+	int entityTotal = *entityCount;
 
-	Entity* mySharedEnt = (Entity*)(entCount + 1);
+	Entity* sharedEntity = (Entity*)(entityCount + 1);
 
-	for (int i = 0; i < entCountForReal; i++) {
+	for (int i = 0; i < entityTotal; i++) {
 		cout << "pushing" << endl;
-		cout << "data: " << mySharedEnt->x << " " << mySharedEnt->y << " " << mySharedEnt->x << endl;
-		mEntities.push_back(*mySharedEnt);
-		mySharedEnt++;
+		cout << "data: " << sharedEntity->x << " " << sharedEntity->y << " " << sharedEntity->x << endl;
+		mEntities.push_back(*sharedEntity);
+
+		sharedEntity++;
 	}
 
-	UnmapViewOfFile(entCount);
+	UnmapViewOfFile(entityCount);
 
 	return true;
 }
@@ -45,12 +46,12 @@ void EntityDisplayApp::Draw() {
 	if (data) {
 		mEntityCount = *data;
 		mEntities = std::vector<Entity>();
-		Entity* entityPointer = (Entity*)(data + 1);
-		for (int i = 0; i < mEntityCount; i++) {
 
+		Entity* entityPointer = (Entity*)(data + 1);
+
+		for (int i = 0; i < mEntityCount; i++) {
 			mEntities.push_back(*entityPointer);
 			entityPointer++;
-
 		}
 	}
 

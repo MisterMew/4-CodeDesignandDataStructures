@@ -34,8 +34,8 @@ protected:
 
 	// define a block of entities that should be shared
 	enum { ENTITY_COUNT = 100 };
-	Entity mEntities[ENTITY_COUNT];
 	int mEntityCount = ENTITY_COUNT;
+	Entity mEntities[ENTITY_COUNT];
 
 	HANDLE h;
 };
