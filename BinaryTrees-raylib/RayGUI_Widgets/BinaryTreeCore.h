@@ -11,10 +11,13 @@ private:
 
 	/// Functions
    /* Declare class functions */
+	bool FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& ppOutParent);
+
 public:
 	void InsertNode(int newData);
 	void DeleteNode(int nodeToDelete);
-	TreeNode* SearchTree(int nodeToFind);
+	TreeNode* SearchFor(int nodeToFind);
 
 	void DrawRoot(TreeNode* selectedNode);
+	void DrawTree(TreeNode* node, int posX, int posY, int horSpace, TreeNode* selectedNode);
 };

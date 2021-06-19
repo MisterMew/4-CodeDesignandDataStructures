@@ -28,5 +28,7 @@ using namespace std;
 int valueBoxValue = 0;
 bool valueBoxEditMode = false;
 
+
 /// Function Declarations
 void Init();
+void DrawOptions();

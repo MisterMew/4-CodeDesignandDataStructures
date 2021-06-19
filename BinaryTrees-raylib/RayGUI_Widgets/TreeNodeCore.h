@@ -5,10 +5,24 @@ using namespace std;
 
 class TreeNode {
 private:
-	TreeNode* mLeftBranch_ptr;
-	TreeNode* mRightBranch_ptr;
+	TreeNode* mLeft_ptr = nullptr;
+	TreeNode* mRight_ptr = nullptr;
+	int mNodeData;
 
-	/// Functions
-   /* Declare class functions */
+	  /// Functions
 public:
+    /* Declare class functions */
+	void DrawNode(int posX, int posY, bool isSelected);
+
+	/* Declare and Define class functions */
+ 	bool BranchesLeft() { return (mLeft_ptr != nullptr); }
+	bool BranchesRight() { return (mRight_ptr != nullptr); }
+
+	int NodeData() { return mNodeData; } 
+	TreeNode* LeftNode() { return mLeft_ptr; }
+	TreeNode* RightNode() { return mRight_ptr; }
+
+	void SetData(int newData) { mNodeData = newData;  }
+	void SetLeft(TreeNode* node) { mLeft_ptr = node; }
+	void SetRight(TreeNode* node) { mRight_ptr = node; }
 };

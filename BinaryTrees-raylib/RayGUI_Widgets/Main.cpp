@@ -17,6 +17,9 @@ void Init() {
  /// DRAW OPTIONS
 /* Draw the menu options to interact with the DLL */
 void DrawOptions() {
+
+	BinaryTree binaryTree;
+	TreeNode* selectedNode = nullptr;
 	
 	GuiSetStyle(TEXTBOX, TEXT_ALIGNMENT, GUI_TEXT_ALIGN_CENTER);
 
@@ -24,8 +27,13 @@ void DrawOptions() {
 		valueBoxEditMode = !valueBoxEditMode;
 	}
 
-	if (GuiButton(Rectangle{ 5, 50, 125, 30 }, GuiIconText(RICON_OK_TICK, "INSERT NODE"))) {}
+	if (GuiButton(Rectangle{ 5, 50, 125, 30 }, GuiIconText(RICON_OK_TICK, "INSERT NODE"))) {
+		//binaryTree.InsertNode(valueBoxValue);
+		//selectedNode = binaryTree.SearchFor(valueBoxValue);
+	}
 	if (GuiButton(Rectangle{ 5, 85, 125, 30 }, GuiIconText(RICON_CROSS, "DELETE NODE"))) {}
+
+	binaryTree.DrawRoot(selectedNode);
 }
 
  /// Main
@@ -35,13 +43,7 @@ int main() {
 	bool exitWindow = false;
 	while (!exitWindow) {
 		exitWindow = WindowShouldClose();
-		
-		/// Update
-	#pragma region [ Update ]
 
-	#pragma endregion
-
-		/// Draw
 	#pragma region [ Drawing ]
 
 		BeginDrawing();
