@@ -14,31 +14,12 @@ void Init() {
 	SetExitKey(0);
 }
 
- /// DRAW OPTIONS
-/* Draw the menu options to interact with the DLL */
-void DrawOptions() {
-
-	BinaryTree binaryTree;
-	TreeNode* selectedNode = nullptr;
-	
-	GuiSetStyle(TEXTBOX, TEXT_ALIGNMENT, GUI_TEXT_ALIGN_CENTER);
-
-	if (GuiValueBox(Rectangle{ 5, 15, 125, 30 }, NULL, &valueBoxValue, 0, 100, valueBoxEditMode)) {
-		valueBoxEditMode = !valueBoxEditMode;
-	}
-
-	if (GuiButton(Rectangle{ 5, 50, 125, 30 }, GuiIconText(RICON_OK_TICK, "INSERT NODE"))) {
-		binaryTree.InsertNode(valueBoxValue);
-		selectedNode = binaryTree.SearchFor(valueBoxValue);
-	}
-	if (GuiButton(Rectangle{ 5, 85, 125, 30 }, GuiIconText(RICON_CROSS, "DELETE NODE"))) {}
-
-	binaryTree.DrawRoot(selectedNode);
-}
-
  /// Main
 int main() {
 	Init(); //Initialisation
+
+	BinaryTree binaryTree;
+	TreeNode* selectedNode = nullptr;
 
 	bool exitWindow = false;
 	while (!exitWindow) {
@@ -49,7 +30,22 @@ int main() {
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
-		DrawOptions();
+
+		 /// DRAW OPTIONS
+		/* Draw the menu options to interact with the DLL */
+		GuiSetStyle(TEXTBOX, TEXT_ALIGNMENT, GUI_TEXT_ALIGN_CENTER);
+
+		if (GuiValueBox(Rectangle{ 5, 15, 125, 30 }, NULL, &valueBoxValue, 0, 100, valueBoxEditMode)) {
+			valueBoxEditMode = !valueBoxEditMode;
+		}
+
+		if (GuiButton(Rectangle{ 5, 50, 125, 30 }, GuiIconText(RICON_OK_TICK, "INSERT NODE"))) {
+			binaryTree.InsertNode(valueBoxValue);
+		}
+		if (GuiButton(Rectangle{ 5, 85, 125, 30 }, GuiIconText(RICON_CROSS, "DELETE NODE"))) {
+			binaryTree.DeleteNode(valueBoxValue);
+		}
+		binaryTree.DrawRoot(selectedNode);
 
 		EndDrawing();
 

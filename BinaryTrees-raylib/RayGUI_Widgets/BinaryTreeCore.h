@@ -11,15 +11,18 @@ private:
 
 	/// Functions
    /* Declare class functions */
-	bool FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& ppOutParent);
+	bool FindNode(int a_nSearchValue, TreeNode*& outNode, TreeNode*& outParent);
 
 public:
 	BinaryTree();
 	~BinaryTree();
 
+
 	void InsertNode(int newData);
 	void DeleteNode(int nodeToDelete);
-	TreeNode* SearchFor(int nodeToFind);
+
+	TreeNode* Get(int dataToFind);
+	TreeNode* Root() { return mRoot_ptr; }
 
 	void DrawRoot(TreeNode* selectedNode);
 	void DrawTree(TreeNode* node, int posX, int posY, int horSpace, TreeNode* selectedNode);

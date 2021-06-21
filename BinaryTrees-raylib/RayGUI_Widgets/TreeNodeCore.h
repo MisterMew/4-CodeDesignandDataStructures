@@ -5,30 +5,41 @@ using namespace std;
 
 class TreeNode {
 private:
+	int mNodeData = 0;
+	TreeNode* mParent_ptr = nullptr;
 	TreeNode* mLeft_ptr = nullptr;
 	TreeNode* mRight_ptr = nullptr;
-	int mNodeData;
 
 
 public:
-	TreeNode();
+	TreeNode(int data, TreeNode* parentNode, TreeNode* leftNode, TreeNode* rightNode) {
+		mNodeData = data;
+		mParent_ptr = parentNode;
+		mLeft_ptr = leftNode;
+		mRight_ptr = rightNode;
+	}
 
 	 /// Functions
-    /* Declare class functions */
+    /* Function declarations */
 	TreeNode(int value);
 	~TreeNode();
 
 	void DrawNode(int posX, int posY, bool isSelected);
 
-	/* Declare and Define class functions */
+	void InsertNode(int newData);
+
+
+	/* Function definitions */
  	bool BranchesLeft() { return (mLeft_ptr != nullptr); }
 	bool BranchesRight() { return (mRight_ptr != nullptr); }
 
 	int NodeData() { return mNodeData; } 
+	TreeNode* Parent() { return mParent_ptr; }
 	TreeNode* LeftNode() { return mLeft_ptr; }
 	TreeNode* RightNode() { return mRight_ptr; }
 
-	void SetData(int newData) { mNodeData = newData;  }
+	void SetData(int newData) { mNodeData = newData; }
+	void SetParent(TreeNode* parent) { mParent_ptr = parent; }
 	void SetLeft(TreeNode* node) { mLeft_ptr = node; }
 	void SetRight(TreeNode* node) { mRight_ptr = node; }
 };

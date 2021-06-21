@@ -12,16 +12,38 @@ BinaryTree::~BinaryTree() {
 	}
 }
 
-
+ /// INSERT NODE
+/* Insert node from tree */
 void BinaryTree::InsertNode(int newData) {
-	TreeNode* newNode = new TreeNode();
+	TreeNode* newNode = new TreeNode(newData, nullptr, nullptr, nullptr);
+
+	// Check for root
+	if (mRoot_ptr == nullptr) {
+		mRoot_ptr = newNode;
+		return;
+	}
+	else {
+		mRoot_ptr->InsertNode(newData);
+	}
 }
 
-void BinaryTree::DeleteNode(int nodeToDelete) {}
+ /// DELETE NODE
+/* Delete node from tree */
+void BinaryTree::DeleteNode(int nodeToDelete) {
+	if (mRoot_ptr == nullptr) { return; }
+
+	TreeNode* currentNode = Get(nodeToDelete);
+
+	// Delete a leaf node
+	if (currentNode->LeftNode() == nullptr && currentNode->RightNode() == nullptr) {
+		currentNode->SetParent(nullptr);
+		delete currentNode;
+	}
+}
 
  /// FIND NODE
 /* Search by a nodes value */
-TreeNode* BinaryTree::SearchFor(int dataToFind) {
+TreeNode* BinaryTree::Get(int dataToFind) {
 	TreeNode* currentNode = mRoot_ptr;
 	TreeNode* parentNode = nullptr;
 
@@ -56,7 +78,7 @@ void BinaryTree::DrawTree(TreeNode* currentNode, int posX, int posY, int horizon
 
 	if (currentNode) {
 		if (currentNode->BranchesLeft()) {
-			DrawLine(posX, posY, (posX - horizontalSpacing), (posY + 80), BEIGE);
+			DrawLine(posX, posY, (posX - horizontalSpacing), (posY + 80), BROWN);
 
 			DrawTree(currentNode->LeftNode(), posX - horizontalSpacing, posY + 80, horizontalSpacing, selectedNode);
 		}
