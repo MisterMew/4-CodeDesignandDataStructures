@@ -7,46 +7,40 @@ TreeNode::TreeNode(int value) {
 	mRight_ptr = nullptr;
 }
 
-TreeNode::~TreeNode() {
-	delete mLeft_ptr;
-	delete mRight_ptr;
-}
-
  /// INSERT NODE
 /* Insert Node to tree */
 void TreeNode::InsertNode(int newData) {
-	TreeNode* newNode = new TreeNode(newData, nullptr, nullptr, nullptr);
 	TreeNode* currentNode = this;
 
 	if (mParent_ptr != nullptr) {
 		if (mParent_ptr->RightNode() == nullptr && newData > mParent_ptr->NodeData()) {
-			mParent_ptr->mRight_ptr = newNode;
+			mParent_ptr->SetRight(new TreeNode(newData, mParent_ptr, nullptr, nullptr));
 			return;
 		}
 
 		if (mParent_ptr->LeftNode() == nullptr && newData < mParent_ptr->NodeData()) {
-			mParent_ptr->mLeft_ptr = newNode;
+			mParent_ptr->SetLeft(new TreeNode(newData, mParent_ptr, nullptr, nullptr));
 			return;
 		}
 	}
 
 	// Right
-	if (newNode->NodeData() > currentNode->NodeData()) {
+	if (newData > currentNode->NodeData()) {
 		if (currentNode->RightNode() != nullptr) {
 			currentNode->RightNode()->InsertNode(newData);
 		}
 		else {
-			currentNode->SetRight(newNode);
+			currentNode->SetRight(new TreeNode(newData, this, nullptr, nullptr));
 		}
 	}
 
 	// Left
-	if (newNode->NodeData() < currentNode->NodeData()) {
+	if (newData < currentNode->NodeData()) {
 		if (currentNode->LeftNode() != nullptr) {
 			currentNode->LeftNode()->InsertNode(newData);
 		}
 		else {
-			currentNode->SetLeft(newNode);
+			currentNode->SetLeft(new TreeNode(newData, this, nullptr, nullptr));
 		}
 	}
 }
@@ -61,6 +55,13 @@ void TreeNode::DeleteNode(TreeNode* mNodeToDelete) {
 	/// DELETE Leaf node
 	if (nodeToDelete->RightNode() == nullptr && nodeToDelete->LeftNode() == nullptr) {
 		DeleteLeaf(nodeToDelete);
+		return;
+	}
+
+	/// DELETE with children
+	if (nodeToDelete->RightNode() != nullptr && nodeToDelete->LeftNode() != nullptr) {
+		DeleteParent(nodeToDelete);
+		return;
 	}
 
 	/// DELETE with left child only
@@ -73,12 +74,6 @@ void TreeNode::DeleteNode(TreeNode* mNodeToDelete) {
 	if (nodeToDelete->LeftNode() == nullptr) {
 		DeleteRight(nodeToDelete);
 	}
-
-	/// DELETE with children
-	if (nodeToDelete->RightNode() != nullptr && nodeToDelete->LeftNode() != nullptr) {
-		DeleteParent(nodeToDelete);
-		return;
-	}
 }
 
  /// DELETE LEAF NODE
@@ -88,15 +83,16 @@ void TreeNode::DeleteLeaf(TreeNode* mNodeToDelete) {
 
 	/// Right Node
 	if (nodeToDelete->NodeData() > nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is right of parent
-		nodeToDelete->Parent()->SetRight(nullptr);						//Detach from parent
+		nodeToDelete->Parent()->SetRight(nullptr);                        //Detach from parent
 	}
 
 	/// Left Node
 	if (nodeToDelete->NodeData() < nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is left of parent
-		nodeToDelete->Parent()->SetLeft(nullptr);						//Detach from parent
+		nodeToDelete->Parent()->SetLeft(nullptr);                        //Detach from parent
 	}
 
 	delete nodeToDelete; //Delete the node
+	nodeToDelete = nullptr;
 }
 
  /// DELETE LEFT NODE
@@ -105,16 +101,17 @@ void TreeNode::DeleteLeft(TreeNode* mNodeToDelete) {
 	TreeNode* nodeToDelete = mNodeToDelete;
 
 	if (nodeToDelete->NodeData() > nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is right of parent
-		nodeToDelete->LeftNode()->SetParent(nodeToDelete->Parent());	//Re-parent nodeToDeletes left node
-		nodeToDelete->Parent()->SetRight(nodeToDelete->LeftNode());	   //Set parents right node
+		nodeToDelete->LeftNode()->SetParent(nodeToDelete->Parent());    //Re-parent nodeToDeletes left node
+		nodeToDelete->Parent()->SetRight(nodeToDelete->LeftNode());       //Set parents right node
 	}
 
-	else {															  //If nodeToDelete is left of parent
+	else {                                                              //If nodeToDelete is left of parent
 		nodeToDelete->LeftNode()->SetParent(nodeToDelete->Parent()); //Re-parent nodeToDeletes left node
 		nodeToDelete->Parent()->SetLeft(nodeToDelete->LeftNode());  //Set parents left node
 	}
 
 	delete nodeToDelete; //Delete Node
+	nodeToDelete = nullptr;
 }
 
  /// DELETE RIGHT NODE
@@ -123,14 +120,18 @@ void TreeNode::DeleteRight(TreeNode* mNodeToDelete) {
 	TreeNode* nodeToDelete = mNodeToDelete;
 
 	if (nodeToDelete->NodeData() > nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is right of parent
-		nodeToDelete->RightNode()->SetParent(nodeToDelete->Parent());	//Re-parent nodeToDeletes right node
+		nodeToDelete->RightNode()->SetParent(nodeToDelete->Parent());    //Re-parent nodeToDeletes right node
 		nodeToDelete->Parent()->SetRight(nodeToDelete->RightNode());   //Set parents right node
 	}
 
-	else {															   //If nodeToDelete is left of parent
+	else {                                                               //If nodeToDelete is left of parent
 		nodeToDelete->RightNode()->SetParent(nodeToDelete->Parent()); //Re-parent nodeToDeletes right node
 		nodeToDelete->Parent()->SetLeft(nodeToDelete->RightNode());  //Set parents left node
 	}
+
+	nodeToDelete->mParent_ptr == nullptr;
+	nodeToDelete->mRight_ptr == nullptr;
+	nodeToDelete = nullptr;
 
 	delete nodeToDelete; //Delete Node
 }
@@ -141,13 +142,13 @@ void TreeNode::DeleteParent(TreeNode* mNodeToDelete) {
 	TreeNode* minNode = mNodeToDelete->RightNode();
 
 	while (minNode->LeftNode() != nullptr) { //Loop through all left nodes
-		minNode = minNode->LeftNode();		//Set next node
+		minNode = minNode->LeftNode();        //Set next node
 	}
 
 	mNodeToDelete->SetData(minNode->NodeData()); //Dynamically set the nodeToDelete to the end-most node
 
 	if (minNode->RightNode() == nullptr) { //Check for no more children
-		DeleteLeaf(minNode);			  //Call function to delete leaf
+		DeleteLeaf(minNode);              //Call function to delete leaf
 		return;
 	}
 
@@ -158,18 +159,12 @@ void TreeNode::DeleteParent(TreeNode* mNodeToDelete) {
 
  /// DRAW NODE
 /* Draws the nodes */
-void TreeNode::DrawNode(int posX, int posY, bool isSelected = false) {
+void TreeNode::DrawNode(int posX, int posY) {
 	static char buffer[10];
 	sprintf(buffer, "%d", mNodeData);
 
-	DrawCircle(posX, posY, 30, ORANGE);
+	DrawCircle(posX, posY, 30, ORANGE); //Draw outer edge
+	DrawCircle(posX, posY, 28, GOLD);  //Draw inside
 
-	if (isSelected == true) {
-		DrawCircle(posX, posY, 28, Fade(GOLD, 0.5));
-	}
-	else {
-		DrawCircle(posX, posY, 28, GOLD);
-	}
-
-	DrawText(buffer, posX - 10, posY - 8, 18, RAYWHITE);
+	DrawText(buffer, posX - 10, posY - 8, 18, RAYWHITE); //Draw node data
 }

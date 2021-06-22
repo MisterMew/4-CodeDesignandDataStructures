@@ -7,24 +7,22 @@ class TreeNode;
 
 class BinaryTree {
 private:
-	TreeNode* mRoot_ptr = nullptr;
+    TreeNode* mRoot_ptr = nullptr;
 
-	/// Functions
+    /// Functions
    /* Declare class functions */
-	bool FindNode(int a_nSearchValue, TreeNode*& outNode, TreeNode*& outParent);
+    bool FindNode(int a_nSearchValue, TreeNode*& outNode, TreeNode*& outParent);
 
 public:
-	BinaryTree();
-	~BinaryTree();
+    BinaryTree();
+    ~BinaryTree();
 
+    void InsertNode(int newData);
+    void DeleteNode(int mNodeToDelete);
 
-	void InsertNode(int newData);
+    TreeNode* Get(int dataToFind);
+    TreeNode* Root() { return mRoot_ptr; }
 
-	void DeleteNode(int mNodeToDelete);
-
-	TreeNode* Get(int dataToFind);
-	TreeNode* Root() { return mRoot_ptr; }
-
-	void DrawRoot(TreeNode* selectedNode);
-	void DrawTree(TreeNode* node, int posX, int posY, int horSpace, TreeNode* selectedNode);
+    void DrawRoot(TreeNode* selectedNode);
+	void DrawTree(TreeNode* node, int posX, int posY, int nodeSeperation, TreeNode* selectedNode);
 };
