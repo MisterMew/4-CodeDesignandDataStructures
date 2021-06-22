@@ -17,33 +17,28 @@ BinaryTree::~BinaryTree() {
 void BinaryTree::InsertNode(int newData) {
 	TreeNode* newNode = new TreeNode(newData, nullptr, nullptr, nullptr);
 
-	// Check for root
-	if (mRoot_ptr == nullptr) {
-		mRoot_ptr = newNode;
+	if (mRoot_ptr == nullptr) { //If a rootNode doesnt exist
+		mRoot_ptr = newNode;   //Create one
 		return;
 	}
 	else {
-		mRoot_ptr->InsertNode(newData);
+		mRoot_ptr->InsertNode(newData); //Otherwise continue to insert conitions
 	}
 }
 
  /// DELETE NODE
 /* Delete node from tree */
-void BinaryTree::DeleteNode(int nodeToDelete) {
+void BinaryTree::DeleteNode(int mNodeToDelete) {
 	if (mRoot_ptr == nullptr) { return; }
 
-	TreeNode* currentNode = Get(nodeToDelete);
+	TreeNode* nodeToDelete = Get(mNodeToDelete);
 
-	// Delete a leaf node
-	if (currentNode->LeftNode() == nullptr && currentNode->RightNode() == nullptr) {
-		currentNode->SetParent(nullptr);
-		delete currentNode;
-	}
+	mRoot_ptr->DeleteNode(nodeToDelete);
 }
 
  /// FIND NODE
 /* Search by a nodes value */
-TreeNode* BinaryTree::Get(int dataToFind) {
+TreeNode* BinaryTree::Get(int dataToFind) { //Deleteing child nodes gets stick in the while loop
 	TreeNode* currentNode = mRoot_ptr;
 	TreeNode* parentNode = nullptr;
 
@@ -68,7 +63,7 @@ bool BinaryTree::FindNode(int dataToSearch, TreeNode*& outNode_dblptr, TreeNode*
  /// DRAW
 /* Draw the binary trees root node */
 void BinaryTree::DrawRoot(TreeNode* selectedNode) {
-	DrawTree(mRoot_ptr, 400, 40, 400, selectedNode);
+	DrawTree(mRoot_ptr, GetScreenWidth() / 2, 40, 400, selectedNode);
 }
 
 /* Draw the binary trees nodes */

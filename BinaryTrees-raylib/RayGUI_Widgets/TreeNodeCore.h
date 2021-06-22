@@ -24,9 +24,15 @@ public:
 	TreeNode(int value);
 	~TreeNode();
 
-	void DrawNode(int posX, int posY, bool isSelected);
-
 	void InsertNode(int newData);
+
+	void DeleteNode(TreeNode* mNodeToDelete);
+	void DeleteLeaf(TreeNode* mNodeToDelete);
+	void DeleteLeft(TreeNode* mNodeToDelete);
+	void DeleteRight(TreeNode* mNodeToDelete);
+	void DeleteParent(TreeNode* mNodeToDelete);
+
+	void DrawNode(int posX, int posY, bool isSelected);
 
 
 	/* Function definitions */

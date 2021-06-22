@@ -7,7 +7,7 @@ class TreeNode;
 
 class BinaryTree {
 private:
-	TreeNode* mRoot_ptr;
+	TreeNode* mRoot_ptr = nullptr;
 
 	/// Functions
    /* Declare class functions */
@@ -19,7 +19,8 @@ public:
 
 
 	void InsertNode(int newData);
-	void DeleteNode(int nodeToDelete);
+
+	void DeleteNode(int mNodeToDelete);
 
 	TreeNode* Get(int dataToFind);
 	TreeNode* Root() { return mRoot_ptr; }
