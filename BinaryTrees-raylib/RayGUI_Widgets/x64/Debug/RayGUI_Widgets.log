@@ -1,7 +1,4 @@
-﻿  BinaryTreeMain.cpp
-C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\BinaryTrees-raylib\RayGUI_Widgets\BinaryTreeMain.cpp(35,13): warning C4553: '==': result of expression not used; did you intend '='?
-  TreeNodeMain.cpp
+﻿  TreeNodeMain.cpp
 C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\BinaryTrees-raylib\RayGUI_Widgets\TreeNodeMain.cpp(132,28): warning C4553: '==': result of expression not used; did you intend '='?
 C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\BinaryTrees-raylib\RayGUI_Widgets\TreeNodeMain.cpp(133,27): warning C4553: '==': result of expression not used; did you intend '='?
-  Generating Code...
   RayGUI_Widgets.vcxproj -> C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\BinaryTrees-raylib\bin\x64\Debug\BinaryTrees.exe

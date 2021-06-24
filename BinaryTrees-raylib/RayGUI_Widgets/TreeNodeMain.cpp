@@ -102,10 +102,10 @@ void TreeNode::DeleteLeft(TreeNode* mNodeToDelete) {
 
 	if (nodeToDelete->NodeData() > nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is right of parent
 		nodeToDelete->LeftNode()->SetParent(nodeToDelete->Parent());    //Re-parent nodeToDeletes left node
-		nodeToDelete->Parent()->SetRight(nodeToDelete->LeftNode());       //Set parents right node
+		nodeToDelete->Parent()->SetRight(nodeToDelete->LeftNode());    //Set parents right node
 	}
 
-	else {                                                              //If nodeToDelete is left of parent
+	else {                                                            //If nodeToDelete is left of parent
 		nodeToDelete->LeftNode()->SetParent(nodeToDelete->Parent()); //Re-parent nodeToDeletes left node
 		nodeToDelete->Parent()->SetLeft(nodeToDelete->LeftNode());  //Set parents left node
 	}
@@ -120,11 +120,11 @@ void TreeNode::DeleteRight(TreeNode* mNodeToDelete) {
 	TreeNode* nodeToDelete = mNodeToDelete;
 
 	if (nodeToDelete->NodeData() > nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is right of parent
-		nodeToDelete->RightNode()->SetParent(nodeToDelete->Parent());    //Re-parent nodeToDeletes right node
+		nodeToDelete->RightNode()->SetParent(nodeToDelete->Parent());   //Re-parent nodeToDeletes right node
 		nodeToDelete->Parent()->SetRight(nodeToDelete->RightNode());   //Set parents right node
 	}
 
-	else {                                                               //If nodeToDelete is left of parent
+	else {                                                             //If nodeToDelete is left of parent
 		nodeToDelete->RightNode()->SetParent(nodeToDelete->Parent()); //Re-parent nodeToDeletes right node
 		nodeToDelete->Parent()->SetLeft(nodeToDelete->RightNode());  //Set parents left node
 	}
