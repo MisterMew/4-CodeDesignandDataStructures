@@ -1,3 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (DLLG.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  DLLMain.cpp
-  RayGUI_Widgets.vcxproj -> C:\Users\thebe\Downloads\raylib\bin\Win32\Debug\DoubleLinkedLists.exe
