@@ -12,6 +12,7 @@ void HashMenuOptions() {
 		"\n [2] Insert Item"
 		"\n [3] Remove Item"
 		"\n [4] Print Table"
+		"\n [5] Hash Image"
 		"\n [0] EXIT"
 		<< endl;
 }

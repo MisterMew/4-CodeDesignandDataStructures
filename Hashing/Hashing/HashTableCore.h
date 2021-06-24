@@ -9,15 +9,17 @@ namespace ht {
 	/// HASH TABLE DECLARATIONS
 	class HashTable {
 	private:
-		static const int hashGroups = 10; //constant amount of lists
-		list<pair<int, string>> table[hashGroups]; //Store pairs
+		/// VARIABLES
+		static const int hashPairs = 10;			   //Constant number of lists
+		list<pair<int, string>> hashTable[hashPairs]; //List that stores data || List 1, Index 0. List 2, Index 1 . . .
 
 	public:
+		/// FUNCTION DECLARATIONS
 		bool isEmpty() const;
 		int HashFunction(int key);
 		void InsertItem(int key, string name);
 		void RemoveItem(int key);
-		int SearchKey(int key);
+		string SearchKey(int key);
 		void PrintTable();
 	};
 }
