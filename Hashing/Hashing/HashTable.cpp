@@ -22,11 +22,27 @@ namespace ht {
 		return false; //Else return false
 	}
 
+#pragma region [ Hashing Functions ]
+
 	 /// HASH FUNCTION
-    /* Implement the hashing algorithm */
-	int HashTable::HashFunction(int key) {
+    /* Implement the hashing algorithm for an integer */
+	unsigned int HashTable::HashFunction(int key) {
 		return key % hashPairs; //Return the modulus of key, with hashgroups | Key: 420, return 0. Key: 692, return 2.
 	}
+
+	/* Implement the hashing algorithm for a string */
+	unsigned int HashTable::HashFunction(string key) {
+		unsigned int hashedValue(0);
+
+		for (char& c : key) {														   //Loop through each character of the key
+			hashedValue = c + (hashedValue << 4) + (hashedValue << 10) - hashedValue; //Hash each character!
+		}
+
+		cout << "\n [5]HASHED> " << hashedValue << endl;
+		return hashedValue % hashPairs;
+	}
+
+#pragma endregion
 
 	 /// INSERT ITEM
     /* Insert an item into the hashtable */

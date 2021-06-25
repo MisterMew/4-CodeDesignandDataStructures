@@ -26,6 +26,11 @@
     <ClInclude Include="HashTableCore.h" />
     <ClInclude Include="MainCore.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="KittyCakeIsLie.PNG" />
+    <Image Include="KittyFishtank.PNG" />
+    <Image Include="KittySocks.PNG" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -96,6 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

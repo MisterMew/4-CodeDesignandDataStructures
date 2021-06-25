@@ -16,7 +16,8 @@ namespace ht {
 	public:
 		/// FUNCTION DECLARATIONS
 		bool isEmpty() const;
-		int HashFunction(int key);
+		unsigned int HashFunction(int key);
+		unsigned int HashFunction(string key);
 		void InsertItem(int key, string name);
 		void RemoveItem(int key);
 		string SearchKey(int key);

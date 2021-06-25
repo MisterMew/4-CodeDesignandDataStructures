@@ -30,4 +30,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="KittyFishtank.PNG">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="KittyCakeIsLie.PNG">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="KittySocks.PNG">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
