@@ -28,11 +28,12 @@ void BinaryTree::DeleteNode(int mNodeToDelete) {
 	if (mRoot_ptr == nullptr) { return; }
 
 	TreeNode* nodeToDelete = Get(mNodeToDelete);
-	if (nodeToDelete != mRoot_ptr)
+	if (nodeToDelete != mRoot_ptr) {
 		mRoot_ptr->DeleteNode(nodeToDelete);
+	}
 	else {
 		delete mRoot_ptr;
-		mRoot_ptr == nullptr;
+		//mRoot_ptr == nullptr;
 	}
 }
 
@@ -74,17 +75,18 @@ void BinaryTree::DrawTree(TreeNode* currentNode, int posX, int posY, int nodeSep
 	TreeNode* nodeToDraw = currentNode; //Just making it easier to see
 	nodeSeperation /= 2;
 
+		nodeToDraw->DrawNode(posX, posY);
+
 	if (nodeToDraw) {
-		if (nodeToDraw->BranchesLeft()) {
+		if (nodeToDraw->LeftNode() != nullptr) {
 			DrawLine(posX, posY, (posX - nodeSeperation), (posY + 80), BROWN);
 			DrawTree(nodeToDraw->LeftNode(), (posX - nodeSeperation), (posY + 80), nodeSeperation, selectedNode);
 		}
 
-		if (nodeToDraw->BranchesRight()) {
+		if (nodeToDraw->RightNode() != nullptr) {
 			DrawLine(posX, posY, (posX + nodeSeperation), (posY + 80), BEIGE);
 			DrawTree(nodeToDraw->RightNode(), (posX + nodeSeperation), (posY + 80), nodeSeperation, selectedNode);
 		}
 
-		nodeToDraw->DrawNode(posX, posY);
 	}
 }

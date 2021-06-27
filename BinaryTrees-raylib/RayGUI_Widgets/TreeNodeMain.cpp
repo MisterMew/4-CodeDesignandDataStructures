@@ -73,6 +73,7 @@ void TreeNode::DeleteNode(TreeNode* mNodeToDelete) {
 	/// DELETE with right child only
 	if (nodeToDelete->LeftNode() == nullptr) {
 		DeleteRight(nodeToDelete);
+		return;
 	}
 }
 
@@ -83,16 +84,16 @@ void TreeNode::DeleteLeaf(TreeNode* mNodeToDelete) {
 
 	/// Right Node
 	if (nodeToDelete->NodeData() > nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is right of parent
-		nodeToDelete->Parent()->SetRight(nullptr);                        //Detach from parent
+		nodeToDelete->Parent()->SetRight(nullptr);                      //Detach from parent
 	}
 
 	/// Left Node
 	if (nodeToDelete->NodeData() < nodeToDelete->Parent()->NodeData()) { //If nodeToDelete is left of parent
-		nodeToDelete->Parent()->SetLeft(nullptr);                        //Detach from parent
+		nodeToDelete->Parent()->SetLeft(nullptr);                       //Detach from parent
 	}
 
 	delete nodeToDelete; //Delete the node
-	nodeToDelete = nullptr;
+	//nodeToDelete = nullptr;
 }
 
  /// DELETE LEFT NODE
@@ -111,7 +112,7 @@ void TreeNode::DeleteLeft(TreeNode* mNodeToDelete) {
 	}
 
 	delete nodeToDelete; //Delete Node
-	nodeToDelete = nullptr;
+	//nodeToDelete = nullptr;
 }
 
  /// DELETE RIGHT NODE
@@ -131,9 +132,11 @@ void TreeNode::DeleteRight(TreeNode* mNodeToDelete) {
 
 	nodeToDelete->mParent_ptr == nullptr;
 	nodeToDelete->mRight_ptr == nullptr;
-	nodeToDelete = nullptr;
 
 	delete nodeToDelete; //Delete Node
+	
+	//nodeToDelete = nullptr;
+
 }
 
  /// DELETE PARENT NODE
