@@ -10,7 +10,6 @@ class BinaryTree {
 	void DeleteLeft(Node* nodeToDelete);
 
 public:
-
 	void Insert(int value);
 	void Delete(int key);
 
@@ -20,4 +19,3 @@ public:
 
 	void Display();
 };
-

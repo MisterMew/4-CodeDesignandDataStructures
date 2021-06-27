@@ -10,14 +10,13 @@ class Node {
 
 public:
 	Node(Node* parent, int data);
-	~Node();
 
 	void Insert(int newData);
 
 	Node* GetParent();
 	Node* GetRight();
 	Node* GetLeft();
-	int GetData();
+	int   GetData();
 
 	void SetParent(Node* parent);
 	void SetRight(Node* right);
@@ -26,4 +25,3 @@ public:
 
 	void Display(int posX, int posY, int hor);
 };
-

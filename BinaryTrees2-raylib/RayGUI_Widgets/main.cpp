@@ -26,7 +26,7 @@ void Init() {
 	SetExitKey(0);
 }
 
-int main() { 
+int main() {
 	Init();
 
 	BinaryTree binaryTree;
@@ -41,22 +41,21 @@ int main() {
 
 		ClearBackground(RAYWHITE);
 
+		if (binaryTree.GetRoot() != nullptr) {
+			binaryTree.Display();
+		}
+
 		/// DRAW OPTIONS
 	   /* Draw the menu options to interact with the DLL */
 		GuiSetStyle(TEXTBOX, TEXT_ALIGNMENT, GUI_TEXT_ALIGN_CENTER);
 
-		if (GuiValueBox(Rectangle{ 5, 15, 125, 30 }, NULL, &valueBoxValue, 0, 100, valueBoxEditMode)) {
-			valueBoxEditMode = !valueBoxEditMode;
-		}
+		GuiValueBox(Rectangle{ 5, 15, 125, 30 }, "INPUT", &valueBoxValue, 0, 100, true);
 
 		if (GuiButton(Rectangle{ 5, 50, 125, 30 }, GuiIconText(RICON_OK_TICK, "INSERT NODE"))) {
 			binaryTree.Insert(valueBoxValue);
 		}
 		if (GuiButton(Rectangle{ 5, 85, 125, 30 }, GuiIconText(RICON_CROSS, "DELETE NODE"))) {
 			binaryTree.Delete(valueBoxValue);
-		}
-		if (binaryTree.GetRoot() != nullptr) {
-			binaryTree.Display();
 		}
 
 		EndDrawing();

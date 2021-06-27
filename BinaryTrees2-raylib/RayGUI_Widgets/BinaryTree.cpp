@@ -1,18 +1,35 @@
 #include "BinaryTree.h"
 
-void BinaryTree::Insert(int value) {
-	if (mRoot_ptr == nullptr) { 
-		mRoot_ptr = new Node(nullptr, value);
+/* Get Root Node */
+Node* BinaryTree::GetRoot() {
+	return mRoot_ptr;
+}
+
+ /// INSERT NODE
+/* Insert node from tree */
+void BinaryTree::Insert(int newData) {
+	if (mRoot_ptr == nullptr) {				     //If a rootNode doesn't exist
+		mRoot_ptr = new Node(nullptr, newData); //Create a new root node
 	}
 	else {
-		mRoot_ptr->Insert(value);
+		mRoot_ptr->Insert(newData); //Otherwise check for Insert conditions
 	}
 }
 
 #pragma region [ Node Deletion Functions ]
 
+ /// DELETE NODE
+/* Delete node from tree */
 void BinaryTree::Delete(int key) {
-	Node* nodeToDelete = Search(key);
+	Node* nodeToDelete = Search(key); //Search for the node via its data
+
+	if (GetRoot() == nullptr || nodeToDelete == nullptr) { return; } //Check if node doesn't exist
+
+	if (nodeToDelete->GetData() == GetRoot()->GetData()) { //If the node is the root
+		delete mRoot_ptr;	  //Delete the root pointer
+		mRoot_ptr = nullptr; //Set the root pointer to null
+		return;				//Exit function
+	}
 
 	/// Delete Leaf node
 	if (nodeToDelete->GetRight() == nullptr && nodeToDelete->GetLeft() == nullptr) {
@@ -39,24 +56,20 @@ void BinaryTree::Delete(int key) {
 	}
 }
 
-Node* BinaryTree::GetRoot() {
-	return mRoot_ptr;
-}
-
  /// DELETE LEAF NODE
 /* Delete Leaf node from tree */
 void BinaryTree::DeleteLeaf(Node* nodeToDelete) {
-	//Right
-	if (nodeToDelete->GetData() > nodeToDelete->GetParent()->GetData()) {
-		nodeToDelete->GetParent()->SetRight(nullptr);
+	///Delete Right leaf
+	if (nodeToDelete->GetData() > nodeToDelete->GetParent()->GetData()) { //Validate leaf node is right
+		nodeToDelete->GetParent()->SetRight(nullptr);					 //Set to null (for right)
 	}
 
-	//Left
-	if (nodeToDelete->GetData() < nodeToDelete->GetParent()->GetData()) {
-		nodeToDelete->GetParent()->SetLeft(nullptr);
+	///Delete Left leaf
+	if (nodeToDelete->GetData() < nodeToDelete->GetParent()->GetData()) { //Validate leaf node is left
+		nodeToDelete->GetParent()->SetLeft(nullptr);					 //Set to null (for left)
 	}
 
-	delete nodeToDelete;
+	delete nodeToDelete; //Delete the node
 }
 
  /// DELETE PARENT NODE
@@ -77,7 +90,7 @@ void BinaryTree::DeleteParent(Node* nodeToDelete) {
 		return;
 	}
 
-	DeleteRight(nodeToDelete);
+	DeleteRight(minNode);
 }
 
  /// DELETE RIGHT NODE
@@ -136,5 +149,10 @@ Node* BinaryTree::Search(int dataToFind) {
 }
 
 void BinaryTree::Display() {
-	mRoot_ptr->Display(GetScreenWidth() / 2, 40, 400);
+	if (GetRoot() == nullptr) {
+		return;
+	}
+	else {
+		mRoot_ptr->Display(GetScreenWidth() / 2, 40, 400);
+	}
 }
