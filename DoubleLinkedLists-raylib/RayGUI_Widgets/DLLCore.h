@@ -5,7 +5,7 @@ using namespace std;
 
 namespace DLL {
 	/// Variables
-	class LinkedList {
+	class DoubleLinkedList {
 	public:
 		struct Node {
 			int data;

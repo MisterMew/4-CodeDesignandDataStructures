@@ -44,15 +44,15 @@ void BinaryTree::Delete(int key) {
 	}
 
 	/// Delete Right node
-	if (nodeToDelete->GetLeft() == nullptr) {
+	if (nodeToDelete->GetRight() != nullptr) {
 		DeleteRight(nodeToDelete);
 		return;
 	}
 
 	/// Delete Left node
-	if (nodeToDelete->GetRight() == nullptr) {
+	if (nodeToDelete->GetLeft() != nullptr) {
 		DeleteLeft(nodeToDelete);
-	    return;
+	    //return;
 	}
 }
 
@@ -76,29 +76,29 @@ void BinaryTree::DeleteLeaf(Node* nodeToDelete) {
 /* Delete node with two children */
 void BinaryTree::DeleteParent(Node* nodeToDelete) {
 	Node* minNode = nodeToDelete->GetRight(); //Go right once
+	int temp = nodeToDelete->GetData();
 
-	//Get the smallest number that is larger than the node we want to delete
-	//Loop through all left-side nodes
-	while (minNode->GetLeft() != nullptr) { //Keep going left to get the smallest node than the nodeToDelete
-		minNode = minNode->GetLeft();
+	while (minNode->GetLeft() != nullptr) { //While the smaller Node has a left child node
+		minNode = minNode->GetLeft();	   //Go to the next left child node
 	}
 
-	nodeToDelete->SetData(minNode->GetData()); // Copy data into the 
+	nodeToDelete->SetData(minNode->GetData()); //Copy the minimum-most left nodes data to the nodeToDeletes data 
+	minNode->SetData(temp);
 
-	if (minNode->GetRight() == nullptr) {
-		DeleteLeaf(minNode);
-		return;
+	if (minNode->GetRight() == nullptr) { //If the min Node has no right child
+		DeleteLeaf(minNode);			 //We can safely delete the node
+		return;							//and exit the function
 	}
-
-	DeleteRight(minNode);
+	
+	DeleteRight(minNode); //Otherwise we need to delete its right child
 }
 
  /// DELETE RIGHT NODE
 /* Delete node with right branch child */
 void BinaryTree::DeleteRight(Node* nodeToDelete) {
-	if (nodeToDelete->GetData() > nodeToDelete->GetParent()->GetData()) {
-		nodeToDelete->GetRight()->SetParent(nodeToDelete->GetParent());
-		nodeToDelete->GetParent()->SetRight(nodeToDelete->GetRight());
+	if (nodeToDelete->GetData() > nodeToDelete->GetParent()->GetData()) { //If nodeToDeletes data is larger than its paretns data
+		nodeToDelete->GetRight()->SetParent(nodeToDelete->GetParent());  //Set the nodeToDeletes right childs PARENT, to be the nodeToDeletes parent
+		nodeToDelete->GetParent()->SetRight(nodeToDelete->GetRight());  //Then set the nodeToDeletes parents RIGHT node to the nodeToDeletes right node
 	}
 	else {
 		nodeToDelete->GetRight()->SetParent(nodeToDelete->GetParent());

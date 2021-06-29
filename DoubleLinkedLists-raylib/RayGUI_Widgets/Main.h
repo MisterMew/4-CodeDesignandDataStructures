@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning(disable : 4996)
+
 #include <iostream>
 #include <string>
 
@@ -7,9 +9,10 @@
 using namespace std;
 using namespace DLL;
 
-DLL::LinkedList dll;
+DLL::DoubleLinkedList dll;
 
 #define RAYGUI_IMPLEMENTATION
+#define _CRT_SECURE_NO_WARNINGS
 #define RAYGUI_SUPPORT_ICONS
 #define RAYGUI_STATIC
 

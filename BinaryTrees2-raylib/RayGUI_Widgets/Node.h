@@ -21,7 +21,7 @@ public:
 	void SetParent(Node* parent);
 	void SetRight(Node* right);
 	void SetLeft(Node* left);
-	void SetData(int data);
+	void SetData(const int& data);
 
 	void Display(int posX, int posY, int hor);
 };

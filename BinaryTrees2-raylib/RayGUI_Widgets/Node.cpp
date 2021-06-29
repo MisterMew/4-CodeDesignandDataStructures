@@ -16,7 +16,7 @@ int   Node::GetData() { return mData; }
 void Node::SetParent(Node* parent) { mParent_ptr = parent; }
 void Node::SetRight(Node* right) { mRight_ptr = right; }
 void Node::SetLeft(Node* left) { mLeft_ptr = left; }
-void Node::SetData(int data) { mData = data; }
+void Node::SetData(const int &data) { mData = data; }
 
  /// INSERT NODE
 /* Insert Node Function */
@@ -60,16 +60,16 @@ void Node::Display(int posX, int posY, int hor) {
 	if (this == nullptr) { return; }
 	hor /= 2;
 
-	///Draw Left node
-	if (mLeft_ptr != nullptr) {								 //Validate for left node
-		DrawLine(posX, posY, posX - hor, posY + 80, BROWN); //Draw line from existing node to new node
-		mLeft_ptr->Display(posX - hor, posY + 80, hor);    //Draw the new node
+	///Draw Right node
+	if (this->GetRight() != nullptr) {						    //Validate for right node
+		DrawLine(posX, posY, posX + hor, posY + 80, BEIGE);    //Draw line from existing node to new node
+		this->GetRight()->Display(posX + hor, posY + 80, hor);//Draw the new node
 	}
 
-	///Draw Right node
-	if (mRight_ptr != nullptr) {							 //Validate for right node
-		DrawLine(posX, posY, posX + hor, posY + 80, BEIGE); //Draw line from existing node to new node
-		mRight_ptr->Display(posX + hor, posY + 80, hor);   //Draw the new node
+	///Draw Left node
+	if (this->GetLeft() != nullptr) {					   	   //Validate for left node
+		DrawLine(posX, posY, posX - hor, posY + 80, BROWN);   //Draw line from existing node to new node
+		this->GetLeft()->Display(posX - hor, posY + 80, hor);//Draw the new node
 	}
 
 	 /// DRAW NODE

@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 namespace DLL {
-	LinkedList::Node* LinkedList::Get(int index) {
+	DoubleLinkedList::Node* DoubleLinkedList::Get(int index) {
 		Node* currentNode = mhead_ptr;
 
 		if (index > mNodeCount) {
@@ -25,7 +25,7 @@ namespace DLL {
 
 	 /// INSERT to FRONT
 	/* Insert a node to the front of the list */
-	void LinkedList::InsertHead(int newData) {
+	void DoubleLinkedList::InsertHead(int newData) {
 		Node* newNode = new Node(newData, nullptr, nullptr); //Allocate memory for a new Node
 
 		 /// Safety Flag
@@ -62,7 +62,7 @@ namespace DLL {
 
 	 /// INSERT to ARBITRARY
 	/* Insert a node to an arbitrary point in the list */
-	void LinkedList::InsertNode(int newData, int nodePos) {
+	void DoubleLinkedList::InsertNode(int newData, int nodePos) {
 		Node* newNode = new Node(newData, nullptr, nullptr);
 
 		 /// Safety Flags
@@ -90,7 +90,7 @@ namespace DLL {
 
 	 /// INSERT to END
 	/* Insert a node to the end of the list */
-	void LinkedList::InsertTail(int newData) {
+	void DoubleLinkedList::InsertTail(int newData) {
 		Node* newNode = new Node(newData, nullptr, nullptr);
 
 		 /// SAFETY FLAGS 
@@ -131,7 +131,7 @@ namespace DLL {
 
 	 /// DELETE NODE: Head
 	/* Delete the current head node */
-	void LinkedList::DeleteHead() {
+	void DoubleLinkedList::DeleteHead() {
 		if (mhead_ptr == nullptr) { return; }
 
 		Node* currentNode = mhead_ptr;
@@ -154,7 +154,7 @@ namespace DLL {
 
 	 /// DELETE NODE: Middle
 	/* Delete any body node */
-	void LinkedList::DeleteNode(int nodeToDelete) {
+	void DoubleLinkedList::DeleteNode(int nodeToDelete) {
 		if (mhead_ptr == nullptr) { return;	}
 
 		// Selected Node is the head
@@ -180,7 +180,7 @@ namespace DLL {
 
 	 /// DELETE NODE: Tail
 	/* Delete the current tail node */
-	void LinkedList::DeleteTail() {
+	void DoubleLinkedList::DeleteTail() {
 		if (mtail_ptr == nullptr) { return; }
 
 		Node* currentNode = mtail_ptr;
@@ -207,7 +207,7 @@ namespace DLL {
 
 	 /// DRAW NODES
 	/* Draw the dll nodes */
-	void LinkedList::DrawNodes(int selectedNode) {
+	void DoubleLinkedList::DrawNodes(int selectedNode) {
 		if (mNodeCount <= 0) {															 //If the list is empty
 			const string txtEmptyList = "[THE DOUBLE LINKED LIST IS EMPTY]";			//The message I want to display (below converted from string to char)
 			DrawText(txtEmptyList.c_str(), 450, GetScreenHeight() / 2, 20, LIGHTGRAY); //Display at the screens center
@@ -270,7 +270,7 @@ namespace DLL {
 #pragma region [ Sorting Algorithm ]
 	 /// SORTING
 	/*  sort the Linked List */
-	void LinkedList::SortList() {
+	void DoubleLinkedList::SortList() {
 		if (mhead_ptr == nullptr) { return; }
 
 		Node* currentNode = nullptr;
@@ -293,7 +293,7 @@ namespace DLL {
 
 	 /// CREATE NODE DATA
 	/* Generates a random data value */
-	int LinkedList::CreateData() {
+	int DoubleLinkedList::CreateData() {
 		int newData;
 
 		random_device rdm;                              //Obtains a random num from hardware  ||
@@ -307,7 +307,7 @@ namespace DLL {
 
 	 /// COUNT NODES
 	/* Iterate the nodes and return the count */
-	int LinkedList::CountNodes() {
+	int DoubleLinkedList::CountNodes() {
 		if (mhead_ptr == nullptr) { return 0; }
 
 		int nodesCount = 0;
@@ -323,7 +323,7 @@ namespace DLL {
 
 	 /// DISPLAY DL-LIST
 	/* Iterates each node to display the list */
-	void LinkedList::DisplayDLList() {
+	void DoubleLinkedList::DisplayDLList() {
 		Node* current = mhead_ptr;
 
 		if (current == nullptr) {
