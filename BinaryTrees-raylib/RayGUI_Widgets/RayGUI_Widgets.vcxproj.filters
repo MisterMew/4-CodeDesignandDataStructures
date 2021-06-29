@@ -12,21 +12,18 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryTreeMain.cpp">
+    <ClCompile Include="BinaryTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TreeNodeMain.cpp">
+    <ClCompile Include="Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h">
+    <ClInclude Include="BinaryTree.h">
       <Filter>Header Fiels</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryTreeCore.h">
-      <Filter>Header Fiels</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeNodeCore.h">
+    <ClInclude Include="Node.h">
       <Filter>Header Fiels</Filter>
     </ClInclude>
   </ItemGroup>
