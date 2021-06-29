@@ -76,21 +76,21 @@ void BinaryTree::DeleteLeaf(Node* nodeToDelete) {
 /* Delete node with two children */
 void BinaryTree::DeleteParent(Node* nodeToDelete) {
 	Node* minNode = nodeToDelete->GetRight(); //Go right once
-	int temp = nodeToDelete->GetData();
 
 	while (minNode->GetLeft() != nullptr) { //While the smaller Node has a left child node
 		minNode = minNode->GetLeft();	   //Go to the next left child node
 	}
 
-	nodeToDelete->SetData(minNode->GetData()); //Copy the minimum-most left nodes data to the nodeToDeletes data 
-	minNode->SetData(temp);
+	int swapValue = minNode->GetData(); //Temporary var used to swap the values
 
-	if (minNode->GetRight() == nullptr) { //If the min Node has no right child
-		DeleteLeaf(minNode);			 //We can safely delete the node
-		return;							//and exit the function
+	if (minNode->GetRight() == nullptr) {   //If the min Node has no right child
+		DeleteLeaf(minNode);			   //We can safely delete the node
+		nodeToDelete->SetData(swapValue); //Swap the value back
+		return;							 //and exit the function
 	}
 	
-	DeleteRight(minNode); //Otherwise we need to delete its right child
+	DeleteRight(minNode);			   //Otherwise we need to delete its right child
+	nodeToDelete->SetData(swapValue); //Swap the values back
 }
 
  /// DELETE RIGHT NODE

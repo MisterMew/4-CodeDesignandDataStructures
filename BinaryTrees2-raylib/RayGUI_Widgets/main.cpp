@@ -31,16 +31,16 @@ int main() {
 
 	BinaryTree binaryTree;
 
+	binaryTree.Insert(0);
+	binaryTree.Insert(20);
+	binaryTree.Insert(22);
+	binaryTree.Insert(21);
+	binaryTree.Insert(23);
+	binaryTree.Insert(24);
+
 	bool exitWindow = false;
 	while (!exitWindow) {
 		exitWindow = WindowShouldClose();
-
-		binaryTree.Insert(0);
-		binaryTree.Insert(20);
-		binaryTree.Insert(22);
-		binaryTree.Insert(21);
-		binaryTree.Insert(23);
-		binaryTree.Insert(24);
 
 #pragma region [ Drawing ]
 
