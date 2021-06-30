@@ -25,8 +25,8 @@ bool exitConsole = false;
 int userInput;
 
 string filepath, filename;
-string name;
-int key;
+string gKey;
+int gData;
 
 /* Menu Switch */
 int optSelected;
@@ -35,10 +35,12 @@ enum OptSelect {
 	CheckTable,
 	InsertItem,
 	RemoveItem,
-	PrintTable,
-	HashImage
+	PrintTable
 };
 
 /// FUNCTION DECLARATIONS
+bool FileExists(string filepath);
+
 void HashMenuOptions();
+void ValidateKey();
 void MenuValidation();

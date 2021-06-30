@@ -7,6 +7,8 @@ bool FileExists(string filepath) {
 
 #pragma region [ MENU Functions ]
 
+ /// HASH MENU: View Menu
+/* View menu options for hashtable */
 void HashMenuOptions() {
 	cout <<
 		"\n HASHING OPTIONS"
@@ -14,29 +16,30 @@ void HashMenuOptions() {
 		"\n [2] Insert Item"
 		"\n [3] Remove Item"
 		"\n [4] Print Table"
-		"\n [5] Hash Image"
 		"\n [0] EXIT"
 		<< endl;
 }
 
+ /// HASH MENU: Validat Input
+/* Validate user input for insert/remove */
 void ValidateKey() {
 	 /// INSERT Item
 	// Validate user input when inserting an item to the table
 	if (optSelected == OptSelect::InsertItem) {
 		cout << "\n [2]TIP!> If nothing happenes, the input was illegal.";
-		cout << "\n [2]INSERT> Please enter a key. (EG: 905, 247, 390)" << "\n /: ";
-		cin >> key;
+		cout << "\n [2]INSERT> Please enter a key. (EG: Alpha, Bravo2, CH4RL13)" << "\n /: ";
+		cin >> gKey;
+
+		cout << "\n [2]INSERT> Please enter some data. (EG: 905, 247, 390)" << "\n /: ";
+		cin >> gData;
 
 		while (!cin) { //Validate for integer input
 			cin.clear();
 			cin.ignore();
 
-			cout << "\n /: "; 
-			cin >> key;
+			cout << "\n /: ";
+			cin >> gData;
 		}
-
-		cout << "\n [2]INSERT> Please enter a name. (EG: Alpha, Biscuit, Charles)" << "\n /: ";
-		cin >> name;
 
 		return;
 	}
@@ -44,29 +47,15 @@ void ValidateKey() {
 	 /// REMOVE Item
 	// Validate user input when removing an item from the table
 	if (optSelected == OptSelect::RemoveItem) {
-		cout << "\n [3]DELETE> Please enter a key. (EG: 905, 247, 390)" << "\n /: ";
-		cin >> key;
-		
-		while (!cin) { //Validate for integer input
-			cin.clear();
-			cin.ignore();
-			cin >> key;
-		}
+		cout << "\n [3]DELETE> Please enter a key. (EG: Alpha, Bravo2, CH4RL13)" << "\n /: ";
+		getline(cin, gKey);
 
 		return;
 	}
-
-
-	 /// HASH File Name
-	// Validate user input when hashing an image
-	if (optSelected == OptSelect::HashImage) {
-		cout << "\n [5]HASH> Please enter a filepath to any file. EG. c:\\Users\\fileName.PNG" << "\n /: ";
-		cin >> filepath;
-
-		cout << fs::exists(filepath) << endl; //Returns bool if file exists or not
-	}
 }
 
+ /// HASH MENU: Validate Menu Input
+/* Validate user input for selecting a menu option */
 void MenuValidation() {
 	bool flag = true;
 	while (flag) {
@@ -87,7 +76,7 @@ void MenuValidation() {
 			optSelected = OptSelect::InsertItem;
 			flag = false;
 			ValidateKey();
-			HT.InsertItem(key, name);
+			HT.InsertItem(gKey, gData);
 			continue;
 
 		 ///REMOVE ITEM
@@ -96,7 +85,7 @@ void MenuValidation() {
 			optSelected = OptSelect::RemoveItem;
 			flag = false;
 			ValidateKey();
-			HT.RemoveItem(key);
+			HT.RemoveItem(gKey);
 			continue;
 
 		 ///PRINT TABLE
@@ -104,16 +93,6 @@ void MenuValidation() {
 		case OptSelect::PrintTable:
 			flag = false;
 			HT.PrintTable();
-			continue;
-
-		 ///HASH IMAGE NAME
-		// Hashes the name of the image
-		case OptSelect::HashImage:
-			optSelected = OptSelect::HashImage;
-			flag = false;
-			ValidateKey();
-			HT.HashFunction(filename);
-			HT.HashFunction("KittyFishtank");
 			continue;
 
 		 ///EXIT CONSOLE
