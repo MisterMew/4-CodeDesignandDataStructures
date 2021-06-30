@@ -1,6 +1,0 @@
-﻿  pch.cpp
-  TestingAndDebugging.cpp
-     Creating library C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\Hashing - Copy\Debug\TestingAndDebugging.lib and object C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\Hashing - Copy\Debug\TestingAndDebugging.exp
-TestingAndDebugging.obj : error LNK2019: unresolved external symbol "int const __cdecl GetHashElements(void)" (?GetHashElements@@YA?BHXZ) referenced in function "public: void __thiscall TestingAndDebugging::TestingAndDebugging::TestHashElements(void)" (?TestHashElements@TestingAndDebugging@1@QAEXXZ)
-TestingAndDebugging.obj : error LNK2019: unresolved external symbol "unsigned long __cdecl HashFuncELF(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?HashFuncELF@@YAKV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: void __thiscall TestingAndDebugging::TestingAndDebugging::TestHashStr(void)" (?TestHashStr@TestingAndDebugging@1@QAEXXZ)
-C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\Hashing - Copy\Debug\TestingAndDebugging.dll : fatal error LNK1120: 2 unresolved externals
