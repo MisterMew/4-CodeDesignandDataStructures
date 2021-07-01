@@ -1,5 +1,4 @@
 #include "DLLCore.h"
-#include "raylib.h"
 
 namespace DLL {
 	DoubleLinkedList::Node* DoubleLinkedList::Get(int index) {
@@ -30,24 +29,14 @@ namespace DLL {
 
 		 /// Safety Flag
 		/* Null Head */
-		if (mhead_ptr == nullptr) {   //Check if the head is null
-			newNode->prev = nullptr; //Make newNodes previous node, null
-			newNode->next = nullptr;//Make newNodes next node, null
-			mhead_ptr = newNode;   //Make the head the new node.
+		if (mhead_ptr == nullptr) {    //Check if the head is null
+			newNode->prev = nullptr;  //Make newNodes previous node, null
+			newNode->next = nullptr; //Make newNodes next node, null
+			mhead_ptr = newNode;    //Make the head the new node.
+			mtail_ptr = newNode;   //Make the tail the new node too.
 
 			mNodeCount++;		 //Increment NodeCount
 			return;			    //Exit Function
-		}
-
-		/* Null Tail */
-		if (mtail_ptr == nullptr) {		    //Check if the tail is null
-			newNode->prev = mhead_ptr;	   //Make newNodes previous node, the head
-			newNode->next = nullptr;	  //Make newNodes next node, the head
-			mtail_ptr = newNode;		 //Make the tail the newNode.
-			mhead_ptr->next = mtail_ptr;//Make the head's next node, the tail
-
-			mNodeCount++;		      //Increment NodeCount
-			return;					 //Exit Function
 		}
 
 		Node* currentNode = mhead_ptr;
@@ -203,70 +192,6 @@ namespace DLL {
 
 #pragma endregion
 
-#pragma region // Draw List //
-
-	 /// DRAW NODES
-	/* Draw the dll nodes */
-	void DoubleLinkedList::DrawNodes(int selectedNode) {
-		if (mNodeCount <= 0) {															 //If the list is empty
-			const string txtEmptyList = "[THE DOUBLE LINKED LIST IS EMPTY]";			//The message I want to display (below converted from string to char)
-			DrawText(txtEmptyList.c_str(), 450, GetScreenHeight() / 2, 20, LIGHTGRAY); //Display at the screens center
-			return;																	  //Exit Function
-		}
-
-		/// VARIABLES
-		const int outerRadius = 30;
-		const int innerRadius = 27;
-		int i = 0;
-
-		Node* node = mhead_ptr;
-
-		while (node != nullptr) {
-			if (node == nullptr) { return; }
-
-			int posX = ((GetScreenWidth()) / mNodeCount) * i + outerRadius; //Calculate x position
-			int posY = (GetScreenHeight() / 2);							   //Calculate y position
-
-			///Convert int to string for raylib use
-			static char nodeText[10]; //Create a static char buffer
-			sprintf(nodeText, "%d", node->data);
-
-			//Draw HEAD node Red
-			if (node == mhead_ptr) {
-				DrawCircle(posX, posY, outerRadius, MAROON);
-				DrawCircle(posX, posY, innerRadius, RED);
-			}
-
-			//Draw TAIL node Orange
-			if (node == mtail_ptr) {
-				DrawCircle(posX, posY, outerRadius, ORANGE);
-				DrawCircle(posX, posY, innerRadius, GOLD);
-			}
-
-			//Draw every other Node Brown
-			if (node != mhead_ptr && node != mtail_ptr) { 
-				DrawCircle(posX, posY, outerRadius, BROWN);
-				DrawCircle(posX, posY, innerRadius, BEIGE);
-			}
-
-			//Draw selected Node Grey
-			if (i == selectedNode) {
-				DrawCircle(posX, posY, outerRadius, LIGHTGRAY);
-				DrawCircle(posX, posY, innerRadius, GRAY);
-
-				//Make the selected nodes data appear above the list
-				DrawText(nodeText, ((GetScreenWidth() / 2) - (sizeof(nodeText))), ((GetScreenHeight() / 3)), 40, MAROON);
-			}
-
-			DrawText(nodeText, posX - (sizeof(nodeText) * 2), posY - 10, 20, RAYWHITE); //Draw each nodes data
-			
-			i++; //Increment
-			node = node->next; //Iterate to next node
-		}
-	}
-
-#pragma endregion
-
 #pragma region [ Sorting Algorithm ]
 	 /// SORTING
 	/*  sort the Linked List */
@@ -303,22 +228,6 @@ namespace DLL {
 		newData = dataRange(genData);
 
 		return newData;
-	}
-
-	 /// COUNT NODES
-	/* Iterate the nodes and return the count */
-	int DoubleLinkedList::CountNodes() {
-		if (mhead_ptr == nullptr) { return 0; }
-
-		int nodesCount = 0;
-		Node* current = mhead_ptr;
-
-		while (current != nullptr) {
-			nodesCount++;
-			current = current->next;
-		}
-
-		return nodesCount;
 	}
 
 	 /// DISPLAY DL-LIST

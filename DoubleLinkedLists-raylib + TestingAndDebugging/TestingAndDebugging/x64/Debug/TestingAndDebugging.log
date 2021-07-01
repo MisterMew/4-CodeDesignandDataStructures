@@ -1,3 +1,2 @@
-﻿  pch.cpp
-  TestingAndDebugging.cpp
-LINK : fatal error LNK1104: cannot open file 'C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\DoubleLinkedLists-raylib + TestingAndDebugging\TestingAndDebugging.lib'
+﻿  TestingAndDebugging.cpp
+  TestingAndDebugging.vcxproj -> C:\Users\thebe\Documents\GitHub\4-CodeDesignandDataStructures\DoubleLinkedLists-raylib + TestingAndDebugging\x64\Debug\TestingAndDebugging.dll

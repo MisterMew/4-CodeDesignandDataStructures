@@ -39,17 +39,18 @@ namespace DLL {
 		void DeleteHead();
 		void DeleteTail();
 
-		void DrawNodes(int selectedNode);
-
 		void SortList();
 
 		int CreateData();
-		int CountNodes();
 
 		void DisplayDLList();
 
-		/**/
+		/* Function Definitions */
 		int HeadData() { return mhead_ptr->data; }
 		int TailData() { return mtail_ptr->data; }
+
+		int GetNodeCount() { return mNodeCount; }
+		Node* GetHead() { return mhead_ptr; }
+		Node* GetTail() { return mtail_ptr; }
 	};
 }

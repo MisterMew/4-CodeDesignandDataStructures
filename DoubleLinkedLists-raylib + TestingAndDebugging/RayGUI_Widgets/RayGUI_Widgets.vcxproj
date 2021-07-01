@@ -168,12 +168,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DLLMain.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DLLCore.h" />
     <ClInclude Include="Main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DLL-Library\DLL-Library.vcxproj">
+      <Project>{7b9c00cf-d4af-4976-a8e0-ee2b6de55ddf}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

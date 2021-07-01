@@ -26,4 +26,5 @@ int selectionIndex = 0;
 
 /// FUNCTION DECLARATIONS
 void Init();
+void DrawNodes(int selectedNode);
 void DrawOptions();

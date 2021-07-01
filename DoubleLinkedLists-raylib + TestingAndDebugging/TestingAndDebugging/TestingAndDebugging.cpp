@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CppUnitTest.h"
 
 #include "../RayGUI_Widgets/DLLCore.h"
@@ -74,8 +73,7 @@ namespace TestingAndDebugging {
 			testList.DeleteHead();
 			testList.DeleteTail();
 
-			Assert::AreEqual((10 - 2), testList.CountNodes());
+			Assert::AreEqual((10 - 2), testList.GetNodeCount());
 		}
-
 	};
 }
