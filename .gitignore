@@ -1,0 +1,15 @@
+
+# All files & folders that match the below names are EXCLUDED from being uploaded to GitHub
+# Lines starting with a # are comments
+RaylibStarterCS/obj/
+**/Debug/
+**/Release/
+!Raylib/
+
+# Binary output
+bin/
+x64/
+x86/
+
+# Visual Studio cache (Usually close to, or more than, 1GB in size and not needed on anyone else's machines)
+.vs/
